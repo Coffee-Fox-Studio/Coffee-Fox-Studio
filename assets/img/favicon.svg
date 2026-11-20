@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f28a3c"/>
+      <stop offset="1" stop-color="#d9621f"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#2a1a12"/>
+  <polygon points="12,30 15,8 27,22" fill="url(#g)"/>
+  <polygon points="52,30 49,8 37,22" fill="url(#g)"/>
+  <polygon points="15,27 17,14 24,23" fill="#3b2417"/>
+  <polygon points="49,27 47,14 40,23" fill="#3b2417"/>
+  <path d="M10 31 C 10 17, 54 17, 54 31 C 54 44, 41 53, 32 54 C 23 53, 10 44, 10 31 Z" fill="url(#g)"/>
+  <path d="M11 34 C 17 35, 24 40, 32 54 C 21 52, 13 45, 11 34 Z" fill="#f3e6d6"/>
+  <path d="M53 34 C 47 35, 40 40, 32 54 C 43 52, 51 45, 53 34 Z" fill="#f3e6d6"/>
+  <ellipse cx="24" cy="32" rx="2.6" ry="3.3" fill="#1a110c"/>
+  <ellipse cx="40" cy="32" rx="2.6" ry="3.3" fill="#1a110c"/>
+  <path d="M29 45 Q32 43 35 45 Q32 49 29 45 Z" fill="#1a110c"/>
+</svg>

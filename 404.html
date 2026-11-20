@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Café renversé · Coffee Fox Studio</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#1a110c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!--
+    Cette page est autonome : GitHub Pages l'affiche pour n'importe quelle adresse
+    introuvable, même dans des sous-dossiers. Les liens vers le site sont donc
+    calculés en JavaScript (voir en bas) au lieu d'être écrits en dur.
+  -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-family: "Inter", system-ui, sans-serif;
+      color: #f3e6d6;
+      background: radial-gradient(ellipse at 50% 35%, #3a2416 0%, #2a1a12 45%, #1a110c 100%) fixed;
+      background-color: #1a110c;
+    }
+    .wrap { max-width: 520px; }
+    svg { width: min(300px, 75vw); height: auto; filter: drop-shadow(0 18px 30px rgba(0,0,0,.45)); }
+    .code {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 800;
+      font-size: clamp(4rem, 16vw, 6.5rem);
+      line-height: 1;
+      color: #e8742c;
+      margin-top: .5rem;
+    }
+    h1 { font-family: "Fraunces", Georgia, serif; font-size: 1.6rem; margin-top: .4rem; }
+    p { margin-top: .8rem; color: rgba(243,230,214,.7); line-height: 1.6; }
+    .btn {
+      display: inline-block;
+      margin-top: 1.8rem;
+      padding: .85rem 1.5rem;
+      border-radius: 999px;
+      background: #e8742c;
+      color: #1a110c;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(232,116,44,.35);
+      transition: transform .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible { outline: 2px solid #c9a27e; outline-offset: 3px; }
+    #puddle { transform-origin: 250px 270px; animation: spread 1.6s ease-out both; }
+    #q { animation: float 2.6s ease-in-out infinite; transform-origin: 150px 40px; }
+    #tail { transform-origin: 118px 262px; animation: wag 4s ease-in-out infinite; }
+    @keyframes spread { from { transform: scaleX(.2); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes float { 50% { transform: translateY(-8px) rotate(6deg); } }
+    @keyframes wag { 50% { transform: rotate(5deg); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <svg viewBox="0 0 360 310" role="img" aria-label="Le renard a renversé sa tasse de café">
+      <defs>
+        <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f28a3c"/>
+          <stop offset="1" stop-color="#d9621f"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="180" cy="290" rx="150" ry="12" fill="rgba(0,0,0,.35)"/>
+      <ellipse id="puddle" cx="260" cy="282" rx="80" ry="10" fill="#3b2417"/>
+
+      <g id="tail">
+        <path d="M112 272 C 40 282, 8 220, 38 168 C 58 138, 96 148, 90 186 C 85 216, 96 246, 126 256 Z" fill="url(#fg)"/>
+        <path d="M38 168 C 58 138, 96 148, 90 186 C 76 174, 56 168, 38 168 Z" fill="#f3e6d6"/>
+      </g>
+      <path d="M95 287 C 88 222, 110 186, 150 186 C 190 186, 212 222, 205 287 Z" fill="url(#fg)"/>
+      <path d="M126 287 C 126 236, 136 206, 150 206 C 164 206, 174 236, 174 287 Z" fill="#f3e6d6"/>
+
+      <g transform="rotate(-8 150 180)">
+        <polygon points="92,110 92,45 138,82" fill="url(#fg)"/>
+        <polygon points="208,110 208,45 162,82" fill="url(#fg)"/>
+        <path d="M84 110 C 84 68, 216 68, 216 110 C 216 150, 176 176, 150 179 C 124 176, 84 150, 84 110 Z" fill="url(#fg)"/>
+        <path d="M87 118 C 105 120, 126 136, 150 179 C 119 173, 94 151, 87 118 Z" fill="#f3e6d6"/>
+        <path d="M213 118 C 195 120, 174 136, 150 179 C 181 173, 206 151, 213 118 Z" fill="#f3e6d6"/>
+        <ellipse cx="124" cy="116" rx="8" ry="10" fill="#1a110c"/>
+        <ellipse cx="176" cy="116" rx="8" ry="10" fill="#1a110c"/>
+        <circle cx="127" cy="112" r="3" fill="#fff"/>
+        <circle cx="179" cy="112" r="3" fill="#fff"/>
+        <path d="M142 160 Q150 154 158 160 Q150 171 142 160 Z" fill="#1a110c"/>
+        <ellipse cx="150" cy="171" rx="5" ry="4" fill="#1a110c"/>
+      </g>
+
+      <!-- Tasse renversée -->
+      <g transform="rotate(95 270 255)">
+        <rect x="235" y="215" width="70" height="72" rx="11" fill="#f3e6d6"/>
+        <rect x="235" y="242" width="70" height="8" fill="#e8742c"/>
+        <path d="M305 232 C 328 232, 328 268, 305 268" stroke="#eadac6" stroke-width="8" fill="none" stroke-linecap="round"/>
+      </g>
+
+      <text id="q" x="140" y="48" font-family="Fraunces, Georgia, serif" font-weight="800" font-size="46" fill="#c9a27e">?</text>
+    </svg>
+
+    <div class="code">404</div>
+    <h1>Café renversé</h1>
+    <p>Cette page s'est évaporée comme la vapeur de notre café.<br>Le renard est désolé (enfin, un peu).</p>
+    <a class="btn" id="home" href="/">← Retour au studio</a>
+  </div>
+
+  <script>
+    (async () => {
+      // Trouve la racine du site : "/" (site utilisateur ou domaine perso)
+      // ou "/nom-du-repo/" (site de projet GitHub Pages).
+      let root = "/";
+      const seg = location.pathname.split("/").filter(Boolean)[0];
+      if (seg && location.protocol.startsWith("http")) {
+        try {
+          const r = await fetch("/" + seg + "/assets/js/achievements.js", { method: "HEAD", cache: "no-store" });
+          if (r.ok) root = "/" + seg + "/";
+        } catch (e) {}
+      }
+      document.getElementById("home").href = root;
+
+      // Charge le style et le système de succès du site principal
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = root + "assets/css/style.css";
+      css.media = "print";
+      css.onload = () => { css.media = "all"; };
+      document.head.appendChild(css);
+
+      const js = document.createElement("script");
+      js.src = root + "assets/js/achievements.js";
+      js.onload = () => setTimeout(() => window.CFAchievements && window.CFAchievements.unlock("lost"), 900);
+      document.body.appendChild(js);
+
+      const icon = document.createElement("link");
+      icon.rel = "icon";
+      icon.type = "image/svg+xml";
+      icon.href = root + "assets/img/favicon.svg";
+      document.head.appendChild(icon);
+    })();
+  </script>
+</body>
+</html>

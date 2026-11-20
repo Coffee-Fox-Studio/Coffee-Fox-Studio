@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Coffee Fox Studio — Bientôt disponible</title>
+  <meta name="description" content="Coffee Fox Studio, studio indépendant de jeux de simulation et de gestion. Notre site infuse doucement : revenez bientôt !">
+  <meta name="theme-color" content="#1a110c">
+
+  <!-- Aperçu sur les réseaux (remplace l'URL de l'image par l'adresse complète une fois en ligne, voir README) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Coffee Fox Studio">
+  <meta property="og:title" content="Coffee Fox Studio — Bientôt disponible">
+  <meta property="og:description" content="Studio indépendant de jeux de simulation et de gestion. Le site infuse doucement…">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Écran de chargement -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader-cup"><div class="cup-body"><div class="loader-coffee"></div></div></div>
+    <p>Préparation du café…</p>
+  </div>
+
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="glow" id="glow" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Coffee Fox Studio, accueil">
+      <img src="assets/img/favicon.svg" alt="" width="34" height="34">
+      <span>Coffee Fox <em>Studio</em></span>
+    </a>
+    <button class="ach-btn" id="achBtn" type="button" aria-haspopup="dialog" title="Succès">
+      <span aria-hidden="true">🏆</span> <span id="achCount">0/11</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <p class="greeting" id="greeting">Bienvenue, voyageur</p>
+
+    <svg class="mascot" id="mascot" viewBox="0 0 360 310" role="img" tabindex="0"
+         aria-label="Le renard de Coffee Fox Studio avec sa tasse de café. Clique dessus !">
+      <defs>
+        <linearGradient id="foxGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f28a3c"/>
+          <stop offset="1" stop-color="#d9621f"/>
+        </linearGradient>
+        <linearGradient id="mugGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#f8eee2"/>
+          <stop offset="1" stop-color="#e3cfb8"/>
+        </linearGradient>
+        <linearGradient id="steamGrad" gradientUnits="userSpaceOnUse" x1="0" y1="190" x2="0" y2="80">
+          <stop offset="0" stop-color="#f3e6d6" stop-opacity=".75"/>
+          <stop offset="1" stop-color="#f3e6d6" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <ellipse cx="190" cy="290" rx="150" ry="12" fill="rgba(0,0,0,.35)"/>
+
+      <g id="fox">
+        <!-- Queue -->
+        <g id="tail">
+          <path d="M112 272 C 40 282, 8 220, 38 168 C 58 138, 96 148, 90 186 C 85 216, 96 246, 126 256 Z" fill="url(#foxGrad)"/>
+          <path d="M38 168 C 58 138, 96 148, 90 186 C 76 174, 56 168, 38 168 Z" fill="#f3e6d6"/>
+        </g>
+
+        <!-- Corps -->
+        <path d="M95 287 C 88 222, 110 186, 150 186 C 190 186, 212 222, 205 287 Z" fill="url(#foxGrad)"/>
+        <path d="M126 287 C 126 236, 136 206, 150 206 C 164 206, 174 236, 174 287 Z" fill="#f3e6d6"/>
+
+        <!-- Tête -->
+        <g id="headTilt">
+          <g id="head">
+            <g id="earL">
+              <polygon points="92,105 100,35 140,80" fill="url(#foxGrad)"/>
+              <polygon points="101,94 104,54 127,82" fill="#3b2417"/>
+            </g>
+            <g id="earR">
+              <polygon points="208,105 200,35 160,80" fill="url(#foxGrad)"/>
+              <polygon points="199,94 196,54 173,82" fill="#3b2417"/>
+            </g>
+
+            <path d="M84 110 C 84 68, 216 68, 216 110 C 216 150, 176 176, 150 179 C 124 176, 84 150, 84 110 Z" fill="url(#foxGrad)"/>
+            <path d="M87 118 C 105 120, 126 136, 150 179 C 119 173, 94 151, 87 118 Z" fill="#f3e6d6"/>
+            <path d="M213 118 C 195 120, 174 136, 150 179 C 181 173, 206 151, 213 118 Z" fill="#f3e6d6"/>
+
+            <ellipse class="blush" cx="110" cy="140" rx="10" ry="6" fill="#f07a7a"/>
+            <ellipse class="blush" cx="190" cy="140" rx="10" ry="6" fill="#f07a7a"/>
+
+            <!-- Yeux ouverts (suivent la souris) -->
+            <g class="eyes-open">
+              <g class="eye"><g class="pupil">
+                <ellipse cx="124" cy="116" rx="7" ry="9" fill="#1a110c"/>
+                <circle cx="126.5" cy="112.5" r="2.5" fill="#fff"/>
+              </g></g>
+              <g class="eye"><g class="pupil">
+                <ellipse cx="176" cy="116" rx="7" ry="9" fill="#1a110c"/>
+                <circle cx="178.5" cy="112.5" r="2.5" fill="#fff"/>
+              </g></g>
+            </g>
+            <!-- Yeux contents (survol) -->
+            <g class="eyes-happy" stroke="#1a110c" stroke-width="3.2" fill="none" stroke-linecap="round">
+              <path d="M116 119 Q124 108 132 119"/>
+              <path d="M168 119 Q176 108 184 119"/>
+            </g>
+            <!-- Yeux fermés (sommeil) -->
+            <g class="eyes-closed" stroke="#1a110c" stroke-width="3.2" fill="none" stroke-linecap="round">
+              <path d="M116 114 Q124 122 132 114"/>
+              <path d="M168 114 Q176 122 184 114"/>
+            </g>
+
+            <path d="M142 160 Q150 154 158 160 Q150 171 142 160 Z" fill="#1a110c"/>
+            <path d="M150 167 Q145 173 139 170 M150 167 Q155 173 161 170" stroke="#1a110c" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+
+            <!-- Lunettes de soleil (code secret) -->
+            <g id="shades">
+              <rect x="107" y="105" width="34" height="20" rx="7" fill="#111"/>
+              <rect x="159" y="105" width="34" height="20" rx="7" fill="#111"/>
+              <path d="M141 111 L159 111" stroke="#111" stroke-width="4"/>
+              <path d="M112 110 L122 110" stroke="rgba(255,255,255,.45)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M164 110 L174 110" stroke="rgba(255,255,255,.45)" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- Patte posée près de la tasse -->
+        <ellipse cx="208" cy="268" rx="17" ry="10" fill="url(#foxGrad)"/>
+      </g>
+
+      <!-- Tasse -->
+      <g id="mug">
+        <path d="M237 214 C 210 214, 210 256, 237 256" stroke="#eadac6" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <rect x="235" y="196" width="80" height="84" rx="12" fill="url(#mugGrad)"/>
+        <rect x="235" y="226" width="80" height="9" fill="#e8742c"/>
+        <g fill="#b9541a">
+          <circle cx="275" cy="259" r="6.5"/>
+          <circle cx="267" cy="250" r="2.8"/>
+          <circle cx="272.5" cy="246.5" r="2.8"/>
+          <circle cx="278.5" cy="246.5" r="2.8"/>
+          <circle cx="284" cy="250" r="2.8"/>
+        </g>
+        <ellipse cx="275" cy="199" rx="37" ry="6" fill="#3b2417"/>
+      </g>
+
+      <!-- Vapeur (animée en JS) -->
+      <g fill="none" stroke="url(#steamGrad)" stroke-width="4" stroke-linecap="round">
+        <path class="steam"/>
+        <path class="steam"/>
+        <path class="steam"/>
+      </g>
+
+      <!-- Zzz (sommeil) -->
+      <g class="zzz" fill="#f3e6d6" font-family="Fraunces, Georgia, serif" font-weight="800">
+        <text x="196" y="72" font-size="16">z</text>
+        <text x="210" y="52" font-size="21">z</text>
+        <text x="226" y="30" font-size="27">Z</text>
+      </g>
+    </svg>
+
+    <h1 class="title" aria-label="Coffee Fox Studio">
+      <span aria-hidden="true">
+        <span data-split>Coffee</span> <span class="accent" data-split>Fox</span>
+        <span class="studio" data-split>Studio</span>
+      </span>
+    </h1>
+
+    <p class="tagline">Studio indépendant de jeux de simulation &amp; de gestion</p>
+
+    <p class="typed" aria-live="polite"><span id="typed"></span><span class="cursor" aria-hidden="true"></span></p>
+
+    <div class="brew" role="progressbar" aria-label="Avancement du site" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="brew">
+      <div class="brew-label">
+        <span id="brewText">Torréfaction des grains…</span>
+        <span id="pct">0%</span>
+      </div>
+      <div class="bar"><div class="fill" id="fill"></div></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="playBtn" type="button" aria-haspopup="dialog">
+        <span aria-hidden="true">▶</span> Jouer en attendant
+      </button>
+      <a class="btn btn-ghost" id="contactBtn" href="#" hidden>
+        <span aria-hidden="true">✉</span> Nous écrire
+      </a>
+    </div>
+
+    <ul class="socials" id="socials" aria-label="Nos réseaux"></ul>
+  </main>
+
+  <footer class="footer">
+    © <span id="year"></span> Coffee Fox Studio · Fait avec beaucoup trop de café
+    <span class="hint">psst… clique sur le renard</span>
+  </footer>
+
+  <!-- Mini-jeu -->
+  <dialog id="gameDialog" class="dlg dlg-game" aria-labelledby="gameTitle">
+    <div class="dlg-head">
+      <h2 id="gameTitle">Attrape les grains</h2>
+      <button class="dlg-close" type="button" data-close aria-label="Fermer">✕</button>
+    </div>
+    <div class="hud">
+      <span>Score <strong id="gScore">0</strong></span>
+      <span>Record <strong id="gBest">0</strong></span>
+      <span class="lives" id="gLives" aria-label="Vies">♥♥♥</span>
+    </div>
+    <div class="game-wrap">
+      <canvas id="gameCanvas" width="420" height="560"></canvas>
+      <div class="overlay" id="gOverlay">
+        <p class="overlay-title" id="gOverlayTitle">Prêt, barista ?</p>
+        <p class="overlay-text" id="gOverlayText">
+          Attrape les <b>grains de café</b> avec la tasse.<br>
+          Les <b class="gold">grains dorés</b> valent 5 points.<br>
+          Évite les <b class="bug">bugs</b> : 3 vies, pas une de plus.
+        </p>
+        <button class="btn btn-primary" id="gStart" type="button">Jouer</button>
+        <p class="overlay-keys">Souris, doigt ou flèches ← → (Q / D marche aussi)</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Succès -->
+  <dialog id="achDialog" class="dlg" aria-labelledby="achTitle">
+    <div class="dlg-head">
+      <h2 id="achTitle">Succès <small id="achSummary"></small></h2>
+      <button class="dlg-close" type="button" data-close aria-label="Fermer">✕</button>
+    </div>
+    <ul class="ach-list" id="achList"></ul>
+    <div class="dlg-foot">
+      <button class="btn-link" id="achReset" type="button">Réinitialiser les succès</button>
+    </div>
+  </dialog>
+
+  <script src="assets/js/achievements.js" defer></script>
+  <script src="assets/js/minigame.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
